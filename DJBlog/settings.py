@@ -26,7 +26,7 @@ SECRET_KEY = '$@%!%nj!45rbbk=x-*m$#m9&i2kal=17li%=eb8*=2afm-#bjx'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['jakejie.com']
 
 # Application definition
 
@@ -94,9 +94,9 @@ DATABASES = {
         "NAME": "jakejieblog",
         "HOST": "127.0.0.1",
         "PORT": 3306,
-        "USER": "root",
-        # "PASSWORD": "zhujie165102",
-        "PASSWORD": "root",
+        "USER": "jakejieblog",
+        "PASSWORD": "jakejieblogpassword",
+        # "PASSWORD": "root",
     }
 }
 

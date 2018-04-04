@@ -21,6 +21,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import path, include
 import xadmin
 import DjangoUeditor
+from jakejieblog.views import IndexView
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
@@ -29,7 +30,7 @@ urlpatterns = [
     path('ueditor/', include('DjangoUeditor.urls')),
     # 图片显示配置
     path('media/<path:path>/', serve, {"document_root": MEDIA_ROOT}),
-
+    path('', IndexView.as_view(), name='index'),
     path('blog/', include('jakejieblog.urls')),
 ]
 # 设置静态文件路径
