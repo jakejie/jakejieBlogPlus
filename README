@@ -1,0 +1,25 @@
+
+博客原作者：
+https://github.com/jhao104/django-blog
+原作者地址：
+http://www.spiderpy.cn/blog/index/
+
+
+原来作者是使用python27+django1.10+admin+mysql进行开发
+
+我经过修改之后，使用：
+python35+django2.0+xadmin+mysql+DjangoUeditor
+
+后台集成富文本编辑DjangoUeditor
+
+对不熟悉markdown语法的同学可以更友好
+
+示例博客：www.jakejie.com/blog
+特点:
+    博客文章 DjangoUeditor富文本直接编辑
+    三方社会化评论系统支持(畅言)
+    三种皮肤自由切换
+    阅读排行榜/最新评论
+    多目标源博文分享
+    博文归档
+    友情链接

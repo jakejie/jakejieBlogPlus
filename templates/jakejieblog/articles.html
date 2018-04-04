@@ -1,0 +1,87 @@
+{% extends "jakejieblog/base.html" %}
+{% load custom_filter %}
+
+{% block title %}
+    <title>博客列表 - JakeJie</title>
+{% endblock %}
+
+{% block content %}
+    {#    {% paginate article_list 2 %}#}
+    {% if contacts %}
+        <section class="mysection">
+            <h4 class="index-title">
+                <a href="{% url "articles" %}"><i class="el-th-list"></i>{% if category %}列表{% else %} 全部 {% endif %}
+                    &nbsp;&nbsp;> &nbsp;&nbsp;</a>
+                <span class="orange-text">{{ category }}</span>
+                <span style="float:right;margin-right:10px;">共有文章:<a
+                        class="orange-text"> {{ contacts|length }} </a>篇</span>
+            </h4>
+            <div class="arclist">
+                <!--列表开始-->
+                <ul>
+                    {% for article in contacts %}
+                        <li {% if article.view > 500 %}id="tuijian"{% elif article.view > 100 %} id="Hot" {% endif %}>
+                            <div class="arcimg">
+
+                                <img src="{{ MEDIA_URL }}{{ article.image }}"
+                                     alt="{{ article.title }}" title="{{ article.title }}"/>
+                            </div>
+                            <div class="arc-right">
+                                <h4 class="blue-text"><a href="{% url "detail" pk=article.id %}"
+                                                         title="{{ article.title }}">{{ article.title }}</a></h4>
+                                <p>{{ article.digest }}</p>
+                                <ul>
+                                    <li><a title="{{ article.author }} {{ article.date_time }} 发表 "><i
+                                            class="el-time"></i> {{ article.date_time }}</a></li>
+                                    <li><a href="#" title="作者： {{ article.author }}"><i
+                                            class="el-user"></i>{{ article.author }}</a></li>
+                                    <li><a href="#" title="已有 {{ article.comment }} 条评论"><i
+                                            class="el-comment"></i>{{ article.comment }}</a>
+                                    </li>
+                                    <li><a title="已有 {{ article.view }} 次浏览"><i
+                                            class="el-eye-open"></i>{{ article.view }}</a></li>
+                                    <li class="mob-hidden">
+                                        <i class="el-tag"></i>
+                                        <a href="#">{{ article.tag.values| getTag }}</a>&nbsp;
+                                    </li>
+                                    <li><a href="{% url "category" article.category.url %}" title="查看分类"><i
+                                            class="el-th-list"></i>{{ article.category.name }}</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <!--列表结束-->
+            </div>
+        {% include 'jakejieblog/pagination.html' %}
+            <!--分页
+            <div class="pagination">
+                <div class="list-page">
+                    <ul class="post-data">
+                        <li><a>第 {{ contacts.number }} 页 总 {{ contacts.paginator.num_pages }} 页</a>
+                            <a>共 {{ count }} 条</a></li>
+                    </ul>
+                </div>
+                <ul>
+                    {##}
+                    <li {% if contacts.has_previous %}{% else %}class="active"{% endif %}>
+                        <a href="?page=1">首页</a></li>
+                    {% if contacts.has_previous %}
+                        <li {% if contacts.has_previous %} {% else %} class="active"{% endif %}>
+                            <a href="?page={{ contacts.previous_page_number }}">上一页</a></li>
+                    {% endif %}
+                    {% if contacts.has_next %}
+                                    <li {% if contacts.has_next %}{% else %}class="active" {% endif %}>
+                                        <a href="?page={{ contacts.next_page_number }}">下一页</a></li>
+                    {% endif %}
+                    <li {% if contacts.has_next %}{% else %}class="active"{% endif %}>
+                        <a href="?page={{ contacts.paginator.num_pages }}">尾页</a></li>
+                </ul>
+            </div>---->
+
+        </section>
+    {% else %}
+        <section class="mysection" style="animation: fuxiasuo 0.8s;">暂时没有任何文章。</section>
+    {% endif %}
+
+{% endblock %}
