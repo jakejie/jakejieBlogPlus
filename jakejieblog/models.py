@@ -64,7 +64,7 @@ class Article(models.Model):
     #                        imagePath="article/ueditor/%Y/%m/", filePath="article/ueditor/%Y/%m/",
     #                        upload_settings={"imageMaxSize": 1204000}, default='')
     content = UEditorField(verbose_name="文章正文", width=800, height=500, toolbars="full",
-                           imagePath="article/%%Y/%%m/", filePath="article/%%Y/%%m",
+                           imagePath="article/", filePath="article/",
                            upload_settings={"imageMaxSize": 1204000}, default='')
 
     digest = models.TextField(blank=True, null=True, verbose_name="文章摘要")  # 文章摘要

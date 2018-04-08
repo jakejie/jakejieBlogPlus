@@ -26,7 +26,7 @@ SECRET_KEY = '$@%!%nj!45rbbk=x-*m$#m9&i2kal=17li%=eb8*=2afm-#bjx'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['jakejie.com']
+ALLOWED_HOSTS = ["127.0.0.1", 'www.jakejie.com']
 
 # Application definition
 
@@ -94,8 +94,10 @@ DATABASES = {
         "NAME": "jakejieblog",
         "HOST": "127.0.0.1",
         "PORT": 3306,
-        "USER": "jakejieblog",
-        "PASSWORD": "jakejieblogpassword",
+        # "USER": "jakejieblog",
+        "USER": "root",
+        # "PASSWORD": "jakejieblogpassword",
+        "PASSWORD": "root",
         # "PASSWORD": "root",
     }
 }
@@ -139,9 +141,12 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static"),
-)
+if DEBUG:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+if not DEBUG:
+    STATICFILES_DIRS = (
+        os.path.join(BASE_DIR, "static"),
+    )
 
 # 设置我们上传文件的路径
 MEDIA_URL = '/media/'
